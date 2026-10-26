@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Anggota</title>
+</head>
+<body>
+    <h1>Daftar Anggota</h1>
+
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID Anggota</th>
+                <th>Nama</th>
+                <th>Telepon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${listAnggota.empty}">
+                <td colspan="3">Belum ada data anggota</td>
+            </tr>
+            <tr th:each="a : ${listAnggota}">
+                <td th:text="${a.idAnggota}">ID</td>
+                <td th:text="${a.nama}">Nama</td>
+                <td th:text="${a.telepon}">Telepon</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Tambah Anggota</h2>
+    <form action="#" th:action="@{/anggota/simpan}" th:object="${anggotaBaru}" method="post">
+        <input type="text" th:field="*{idAnggota}" placeholder="ID Anggota" required />
+        <input type="text" th:field="*{nama}" placeholder="Nama Anggota" required />
+        <input type="text" th:field="*{telepon}" placeholder="No Telepon" required />
+        <button type="submit">Simpan</button>
+    </form>
+</body>
+</html>
